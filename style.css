@@ -1,4 +1,5 @@
 /* Based off of example: https://www.w3schools.com/howto/howto_css_modals.asp */
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -35,4 +36,8 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+#myBtn {
+  border-radius: 12px;
 }
