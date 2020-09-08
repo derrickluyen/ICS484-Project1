@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ICS 484 Project 1</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="uicolumn" style="width: 40%; height: 600px; float: left; background-color: lightskyblue">
+      <h3 align="center">Table</h3>
+      <div style="width:90%; height:500px; float: left; margin-left: 5%" align="center">
+        <div id="table" style="width:100%; height:400px;"></div>
+        <button id="myBtn" style="alignment: center; height: 50px; margin-top: 45px">Info About Page</button>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="plotcolumn" style="width:60%; height:600px; float: left; background-color:rgb(247, 200, 224);">
+      <h3 align="center">Visualization</h3>
+      <div style="width:93.4%; height:500px; float: left; margin-left: 3.3%">
+        <div id="plot1" style="width:100%; height:400px;"></div>
+      </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
