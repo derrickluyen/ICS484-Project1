@@ -1,3 +1,4 @@
+// choleraDeaths.tsv section
 Plotly.d3.tsv("choleraDeaths.tsv", function (data) {
 
   var date_arr = [];
@@ -122,6 +123,7 @@ Plotly.d3.tsv("choleraDeaths.tsv", function (data) {
 
 });
 
+// naplesCholeraAgeSexData.tsv section
 Plotly.d3.text("naplesCholeraAgeSexData.tsv", "text/tsv", function (data) {
 
   // referenced code from: https://stackoverflow.com/questions/13436519/csv-tsv-comment-lines-d3, https://github.com/d3/d3-dsv
@@ -201,19 +203,175 @@ Plotly.d3.text("naplesCholeraAgeSexData.tsv", "text/tsv", function (data) {
   // END FIRST TRACE
 
   // START SECOND TRACE
-  var trace1 = {
+  var trace2 = {
     x: age_arr,
     y: female_arr,
     type: 'bar',
     name: 'Female Fatalities Due to Cholera by Age'
   };
 
-  data1 = [trace1];
+  data2 = [trace2];
 
-  var myChart = Plotly.plot(plot2Div, data1, plotLayout);
+  var myChart2 = Plotly.plot(plot2Div, data2, plotLayout);
   // END SECOND TRACE
 
 });
+
+// UKcensus1851.csv section
+Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
+
+  // referenced code from: https://stackoverflow.com/questions/13436519/csv-tsv-comment-lines-d3, https://github.com/d3/d3-dsv
+  data = data.replace(/^[#@][^\r\n]+[\r\n]+/mg, '');
+  data = d3.csvParse(data);
+  var age_arr = [];
+  var male_arr = [];
+  var female_arr = [];
+  var totalMales = 0;
+  var totalFemales = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    age_arr.push(data[i].age);
+    male_arr.push(data[i].male);
+    female_arr.push(data[i].female);
+    totalMales += parseInt(data[i].male);
+    totalFemales += parseInt(data[i].female);
+  }
+
+  // get plot divs
+  plot3_1Div = document.getElementById('plot3_1');
+  plot3_2Div = document.getElementById('plot3_2');
+  plot3_3Div = document.getElementById('plot3_3');
+  plot3_4Div = document.getElementById('plot3_4');
+  plot3_5Div = document.getElementById('plot3_5');
+
+  // get table div
+  tableDiv = document.getElementById('table3');
+
+  // plot layout 1
+  var plotLayout1 = {
+    title: "UK Census 1851 (Male)",
+    width: 380
+  };
+
+  // plot layout 2
+  var plotLayout2 = {
+    title: "UK Census 1851 (Female)",
+    width: 380
+  };
+
+  // plot layout 3
+  var plotLayout3 = {
+    title: "UK Census 1851 (Male vs Female)",
+    width: 530
+  };
+
+
+  // plot layout 4
+  var plotLayout4 = {
+    title: "UK Census 1851 (Male)",
+    width: 380
+  };
+
+  // plot layout 5
+  var plotLayout5 = {
+    title: "UK Census 1851 (Female)",
+    width: 380
+  };
+
+  // START TABLE
+  // based off of example: https://plotly.com/javascript/table/
+  var tableData = [{
+    type: 'table',
+    header: {
+      values: [["<b>Age</b>"], ["<b>Male</b>"],
+        ["<b>Female</b>"]],
+      align: "center",
+      line: { width: 1, color: 'black' },
+      fill: { color: "grey" },
+      font: { family: "Arial", size: 12, color: "white" }
+    },
+    cells: {
+      values: [age_arr, male_arr, female_arr],
+      align: "center",
+      line: { color: "black", width: 1 },
+      font: { family: "Arial", size: 11, color: ["black"] }
+    }
+  }];
+
+  var tableLayout = {
+    title: "UK 1851 Census Data Table"
+  };
+
+  var myTable = Plotly.plot(tableDiv, tableData, tableLayout);
+  // END TABLE
+
+  // referenced code from: https://plotly.com/javascript/pie-charts/
+  // START FIRST TRACE
+  var trace1 = {
+    labels: age_arr,
+    values: male_arr,
+    type: 'pie',
+    name: 'Census Age Data for Males'
+  };
+
+  data1 = [trace1];
+
+  var myChart = Plotly.plot(plot3_1Div, data1, plotLayout1);
+  // END FIRST TRACE
+
+  // START SECOND TRACE
+  var trace2 = {
+    labels: age_arr,
+    values: female_arr,
+    type: 'pie',
+    name: 'Census Age Data for Females'
+  };
+
+  data2 = [trace2];
+
+  var myChart2 = Plotly.plot(plot3_2Div, data2, plotLayout2);
+  // SECOND TRACE
+
+  // START THIRD TRACE
+  var trace3 = {
+    labels: ['Men', 'Women'],
+    values: [totalMales, totalFemales],
+    type: 'pie',
+    name: 'Census Age Data (Males vs Females)'
+  };
+
+  data3 = [trace3];
+
+  var myChart3 = Plotly.plot(plot3_3Div, data3, plotLayout3);
+  // END THIRD TRACE
+
+  // START FOURTH TRACE
+  var trace4 = {
+    x: age_arr,
+    y: male_arr,
+    type: 'bar',
+    name: 'Male Census Population Data'
+  };
+
+  data4 = [trace4];
+
+  var myChart4 = Plotly.plot(plot3_4Div, data4, plotLayout4);
+  // END FOURTH TRACE
+
+  // START FIFTH TRACE
+  var trace5 = {
+    x: age_arr,
+    y: female_arr,
+    type: 'bar',
+    name: 'Female Census Population Data'
+  };
+
+  data5 = [trace5];
+
+  var myChart5 = Plotly.plot(plot3_5Div, data5, plotLayout5);
+  // END FIFTH TRACE
+});
+
 
 // MODAL CODE - Based off of example: https://www.w3schools.com/howto/howto_css_modals.asp
 
