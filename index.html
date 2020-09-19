@@ -6,29 +6,36 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""></script>
 </head>
 <body>
-    <div id="uicolumn" style="width: 40%; height: 600px; float: left; background-color: lightskyblue;">
-      <div style="width:90%; height:500px; float: left; margin-left: 5%" align="center">
+    <div id="uicolumn" style="width: 40%; height: 600px; float: left; background-color: lightskyblue; border-bottom: 5px solid black">
+      <div style="width:90%; height:500px; float: left; margin-left: 5%;" align="center">
         <div style="height: 50px"></div>
         <div id="table" style="width:100%; height:400px;"></div>
         <button id="myBtn" style="alignment: center; height: 50px; margin-top: 45px">Info About Page</button>
         <div id="myModal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Author: Derrick Luyen | <a href="https://www.linkedin.com/in/derrick-luyen-85b14b178/">LinkedIn</a>
-            | <a href="https://github.com/derrickluyen/">GitHub</a> </h2>
+            <h1>Author: Derrick Luyen</h1>
+            <h3>Contact Info: <a href="https://www.linkedin.com/in/derrick-luyen-85b14b178/">LinkedIn</a>
+              | <a href="https://github.com/derrickluyen/">GitHub</a></h3>
             <h3>Libraries Used For Visualization: <a href="https://plotly.com/">Plot.ly</a> |
-            <a href="https://d3js.org/">D3.js</a></h3>
-            <h4>Source of Data: The data of London's 1854 Cholera outbreak was created and compiled by
+            <a href="https://d3js.org/">D3.js</a> | <a href="https://leafletjs.com/">Leaflet</a></h3>
+            <h3>Source of Data: The data of London's 1854 Cholera outbreak was created and compiled by
               <a href="http://www.rtwilson.com/academic/">Robin Wilson</a> based on
               <a href="http://blog.rtwilson.com/john-snows-famous-cholera-analysis-data-in-modern-gis-formats/">
-                John Snow's Cholera analysis</a>.</h4>
+                John Snow's Cholera analysis</a>.</h3>
           </div>
         </div>
       </div>
     </div>
-    <div id="plotcolumn" style="width:60%; height:600px; float: left; background-color:rgb(247, 200, 224);">
+    <div id="plotcolumn" style="width:60%; height:600px; float: left; background-color: lightskyblue; border-bottom: 5px solid black">
       <div style="width:93.4%; height:500px; float: left; margin-left: 3.3%">
         <div style="height: 50px"></div>
         <div id="plot1" style="width:100%; height:400px;"></div>
@@ -43,22 +50,22 @@
         </div>
       </div>
     </div>
-    <div id="seconduicolumn" style="width: 40%; height: 500px; float: left; background-color: rgb(247, 200, 224);">
+    <div id="seconduicolumn" style="width: 40%; height: 500px; float: left; background-color: lightskyblue; border-bottom: 5px solid black">
       <div style="height: 50px"></div>
       <div style="width:90%; height:500px; float: left; margin-left: 5%" align="center">
         <div id="table2" style="width:100%; height:400px;"></div>
       </div>
     </div>
-    <div id="secondplotcolumn" style="width:60%; height:500px; float: left; background-color: lightskyblue;">
+    <div id="secondplotcolumn" style="width:60%; height:500px; float: left; background-color: lightskyblue; border-bottom: 5px solid black">
       <div style="height: 50px"></div>
       <div style="width:93.4%; height:500px; float: left; margin-left: 3.3%">
         <div id="plot2" style="width:100%; height:300px;"></div>
         <div style="height: 20px"></div>
         <div align="center">
           <p>The chart above is a representation of the number of male and female fatalities per 10,000 people of each age group.
-            This chart plots age ranges on the x-axis and plots number of fatalities per 10,000 people of each gender.
-            The <span style="color:blue">blue</span> bar represents the number of males per 10,000 people in each age group that died
-            due to Cholera. The <span style="color:darkorange">orange</span> bar represents the number of females per 10,000 people
+            This chart plots age ranges on the x-axis and plots number of fatalities per 10,000 people of each gender on the y-axis.
+            The <span style="color:blue">blue</span> bar represents the number of females per 10,000 people in each age group that died
+            due to Cholera. The <span style="color:darkorange">orange</span> bar represents the number of males per 10,000 people
             in each age group that died due to Cholera.</p>
         </div>
       </div>
@@ -69,7 +76,7 @@
         <div id="table3" style="width:100%; height:400px;"></div>
       </div>
     </div>
-    <div id="thirdplotcolumn" style="width:60%; height:500px; float: left; background-color: rgb(247, 200, 224);">
+    <div id="thirdplotcolumn" style="width:60%; height:500px; float: left; background-color: lightskyblue;">
       <div style="height: 50px"></div>
       <div style="width:93.4%; height:500px; float: left; margin-left: 3.3%">
         <div style="width: 100%; height: 300px">
@@ -84,7 +91,7 @@
         </div>
       </div>
     </div>
-    <div id="fourthplotcolumn" style="width:40%; height:500px; float: left; background-color: rgb(247, 200, 224);">
+    <div id="fourthplotcolumn" style="width:40%; height:500px; float: left; background-color: lightskyblue; border-bottom: 5px solid black">
       <div style="height: 50px"></div>
       <div style="height:350px; float: left; margin-left: 3.3%; padding-bottom: 30px" align="center">
         <div id="plot3_3" style="height:350px; float: left;"></div>
@@ -94,19 +101,25 @@
           1851 UK Census.</p>
       </div>
     </div>
-    <div id="fifthplotcolumn" style="width:60%; height:500px; float: left; background-color: lightskyblue;">
+    <div id="fifthplotcolumn" style="width:60%; height:500px; float: left; background-color: lightskyblue; border-bottom: 5px solid black">
       <div style="height: 50px"></div>
       <div style="width:93.4%; height:500px; float: left; margin-left: 3.3%">
         <div style="width: 100%; height: 300px">
-          <div id="plot3_4" style="width:50%; height:350px; float: left;"></div>
-          <div id="plot3_5" style="width:50%; height:350px; float: left;"></div>
+          <div id="plot3_4" style="width:100%; height:350px; float: left;"></div>
         </div>
-        <div style="height: 65px"></div>
+        <div style="height: 45px"></div>
         <div align="center">
-          <p>The charts above are a representation of the 1851 UK Census. The bar chart on the left shows the number of males
-            in the population by age group. The bar chart on the right shows the number of females in the population by age group.</p>
+          <p>The chart above is a representation of the number of males and females in the population according to the 1851 UK Census.
+            This chart plots age groups on the x-axis and plots population of each gender on the y-axis. The
+            <span style="color:blue">blue</span> bar represents the number of females per age group taken by the Census
+            and the <span style="color:darkorange">orange</span> bar represents the number of males per age group taken by the Census.</p>
         </div>
       </div>
+    </div>
+    <div id="mapcolumn" style="width: 100%; height: 600px; float: left; background-color: lightskyblue;">
+      <h2 align="center">Map of London Cholera Outbreak (Deaths & Pumps)</h2>
+      <div style="height: 10px"></div>
+      <div id="mapid" style="height: 500px; width: 80%; float: left; margin-left: 10%"></div>
     </div>
 </body>
 <script src="script.js"></script>

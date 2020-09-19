@@ -192,9 +192,9 @@ Plotly.d3.text("naplesCholeraAgeSexData.tsv", "text/tsv", function (data) {
   // START FIRST TRACE
   var trace1 = {
     x: age_arr,
-    y: male_arr,
+    y: female_arr,
     type: 'bar',
-    name: 'Male Fatalities Due to Cholera by Age'
+    name: 'Female Fatalities Due to Cholera by Age'
   };
 
   data1 = [trace1];
@@ -205,9 +205,9 @@ Plotly.d3.text("naplesCholeraAgeSexData.tsv", "text/tsv", function (data) {
   // START SECOND TRACE
   var trace2 = {
     x: age_arr,
-    y: female_arr,
+    y: male_arr,
     type: 'bar',
-    name: 'Female Fatalities Due to Cholera by Age'
+    name: 'Male Fatalities Due to Cholera by Age'
   };
 
   data2 = [trace2];
@@ -242,7 +242,6 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
   plot3_2Div = document.getElementById('plot3_2');
   plot3_3Div = document.getElementById('plot3_3');
   plot3_4Div = document.getElementById('plot3_4');
-  plot3_5Div = document.getElementById('plot3_5');
 
   // get table div
   tableDiv = document.getElementById('table3');
@@ -268,14 +267,19 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
 
   // plot layout 4
   var plotLayout4 = {
-    title: "UK Census 1851 (Male)",
-    width: 380
-  };
-
-  // plot layout 5
-  var plotLayout5 = {
-    title: "UK Census 1851 (Female)",
-    width: 380
+    title: "UK Census 1851 (Male & Female)",
+    xaxis: {
+      automargin: true,
+      title: {
+        text: "Age Groups",
+      }
+    },
+    yaxis: {
+      automargin: true,
+      title: {
+        text: "Population",
+      }
+    },
   };
 
   // START TABLE
@@ -334,7 +338,7 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
 
   // START THIRD TRACE
   var trace3 = {
-    labels: ['Men', 'Women'],
+    labels: ['Male', 'Female'],
     values: [totalMales, totalFemales],
     type: 'pie',
     name: 'Census Age Data (Males vs Females)'
@@ -348,9 +352,9 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
   // START FOURTH TRACE
   var trace4 = {
     x: age_arr,
-    y: male_arr,
+    y: female_arr,
     type: 'bar',
-    name: 'Male Census Population Data'
+    name: 'Female Census Population Data'
   };
 
   data4 = [trace4];
@@ -358,20 +362,87 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
   var myChart4 = Plotly.plot(plot3_4Div, data4, plotLayout4);
   // END FOURTH TRACE
 
-  // START FIFTH TRACE
+  // START FOURTH TRACE
   var trace5 = {
     x: age_arr,
-    y: female_arr,
+    y: male_arr,
     type: 'bar',
-    name: 'Female Census Population Data'
+    name: 'Male Census Population Data'
   };
 
   data5 = [trace5];
 
-  var myChart5 = Plotly.plot(plot3_5Div, data5, plotLayout5);
+  var myChart5 = Plotly.plot(plot3_4Div, data5, plotLayout4);
   // END FIFTH TRACE
+
 });
 
+// choleraDeathLocations.csv and choleraPumpLocations.csv section
+Plotly.d3.csv("choleraDeathLocations.csv", function (data1) {
+  Plotly.d3.csv("choleraPumpLocations.csv", function (data2) {
+
+    var numDeaths = [];
+    var deathLat = [];
+    var deathLong = [];
+    var pumpLat = [];
+    var pumpLong = [];
+
+    for (let i = 0; i < data1.length; i++) {
+      numDeaths.push(data1[i].NumDeaths);
+      deathLat.push(data1[i].Lat);
+      deathLong.push(data1[i].Long);
+    }
+
+    for (let i = 0; i < data2.length; i++) {
+      pumpLat.push(data2[i].Lat);
+      pumpLong.push(data2[i].Long);
+    }
+
+    var mymap = L.map('mapid').setView([51.5135, -0.136], 17);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+          '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(mymap);
+
+    var circle;
+    var marker;
+
+    for (let i = 0; i < data1.length; i++) {
+      circle = L.circle([deathLat[i], deathLong[i]], {
+        color: 'red',
+        fillColor: 'red',
+        fillOpacity: 0.5,
+        radius: 1.5 * numDeaths[i]
+      }).addTo(mymap);
+      circle.bindPopup(numDeaths[i] + " deaths");
+    }
+
+    for (let i = 0; i < data2.length; i++) {
+      marker = L.marker([pumpLat[i], pumpLong[i]]).addTo(mymap);
+      marker.bindPopup("(" + pumpLat[i] + ", " + pumpLong[i] + ")");
+    }
+
+    // referenced from: https://codepen.io/haakseth/pen/KQbjdO
+
+    var legend = L.control({position: 'topright'});
+    legend.onAdd = function (mymap) {
+
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML += "<h4>Legend</h4>";
+      div.innerHTML += '<i style="background: red"></i><span>Death Location</span><br>';
+      // got color of blue from: https://awesomeopensource.com/project/pointhi/leaflet-color-markers
+      div.innerHTML += '<i style="background: #2A81CB"></i><span>Pump Location</span><br>';
+      return div;
+    };
+
+    legend.addTo(mymap);
+  });
+});
 
 // MODAL CODE - Based off of example: https://www.w3schools.com/howto/howto_css_modals.asp
 
