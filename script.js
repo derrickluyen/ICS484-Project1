@@ -35,18 +35,23 @@ Plotly.d3.tsv("choleraDeaths.tsv", function (data) {
       align: "center",
       line: { width: 1, color: 'black' },
       fill: { color: "grey" },
-      font: { family: "Arial", size: 12, color: "white" }
+      font: { family: "Comic Sans MS", size: 12, color: "white" }
     },
     cells: {
       values: [date_arr, attack_arr, death_arr, totalAttack_arr, totalDeath_arr],
       align: "center",
       line: { color: "black", width: 1 },
-      font: { family: "Arial", size: 11, color: ["black"] }
+      font: { family: "Comic Sans MS", size: 11, color: ["black"] }
     }
   }];
 
   var tableLayout = {
-    title: "Cholera Outbreak Stats"
+    title: "Cholera Outbreak Stats",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    }
   };
 
   var myTable = Plotly.plot(tableDiv, tableData, tableLayout);
@@ -55,6 +60,11 @@ Plotly.d3.tsv("choleraDeaths.tsv", function (data) {
   // set plot layout
   var plotLayout = {
     title: "Cholera Outbreak Attacks / Deaths",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    },
     xaxis: {
       automargin: true,
       title: {
@@ -155,18 +165,23 @@ Plotly.d3.text("naplesCholeraAgeSexData.tsv", "text/tsv", function (data) {
       align: "center",
       line: { width: 1, color: 'black' },
       fill: { color: "grey" },
-      font: { family: "Arial", size: 12, color: "white" }
+      font: { family: "Comic Sans MS", size: 12, color: "white" }
     },
     cells: {
       values: [age_arr, male_arr, female_arr],
       align: "center",
       line: { color: "black", width: 1 },
-      font: { family: "Arial", size: 11, color: ["black"] }
+      font: { family: "Comic Sans MS", size: 11, color: ["black"] }
     }
   }];
 
   var tableLayout = {
-    title: "Naples Cholera Age Sex Data Table"
+    title: "Naples Cholera Age Sex Data Table",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    }
   };
 
   var myTable = Plotly.plot(tableDiv, tableData, tableLayout);
@@ -175,6 +190,11 @@ Plotly.d3.text("naplesCholeraAgeSexData.tsv", "text/tsv", function (data) {
   // set plot layout
   var plotLayout = {
     title: "Cholera Outbreak Fatalities by Age",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    },
     xaxis: {
       automargin: true,
       title: {
@@ -249,18 +269,33 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
   // plot layout 1
   var plotLayout1 = {
     title: "UK Census 1851 (Male)",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    },
     width: 380
   };
 
   // plot layout 2
   var plotLayout2 = {
     title: "UK Census 1851 (Female)",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    },
     width: 380
   };
 
   // plot layout 3
   var plotLayout3 = {
     title: "UK Census 1851 (Male vs Female)",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    },
     width: 530
   };
 
@@ -268,6 +303,11 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
   // plot layout 4
   var plotLayout4 = {
     title: "UK Census 1851 (Male & Female)",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    },
     xaxis: {
       automargin: true,
       title: {
@@ -292,18 +332,23 @@ Plotly.d3.text("UKcensus1851.csv", "text/csv", function (data) {
       align: "center",
       line: { width: 1, color: 'black' },
       fill: { color: "grey" },
-      font: { family: "Arial", size: 12, color: "white" }
+      font: { family: "Comic Sans MS", size: 12, color: "white" }
     },
     cells: {
       values: [age_arr, male_arr, female_arr],
       align: "center",
       line: { color: "black", width: 1 },
-      font: { family: "Arial", size: 11, color: ["black"] }
+      font: { family: "Comic Sans MS", size: 11, color: ["black"] }
     }
   }];
 
   var tableLayout = {
-    title: "UK 1851 Census Data Table"
+    title: "UK 1851 Census Data Table",
+    font: {
+      family: 'Comic Sans MS',
+      size: 12,
+      color: '#333333'
+    }
   };
 
   var myTable = Plotly.plot(tableDiv, tableData, tableLayout);
