@@ -176,7 +176,7 @@ Plotly.d3.text("naplesCholeraAgeSexData.tsv", "text/tsv", function (data) {
   }];
 
   var tableLayout = {
-    title: "Naples Cholera Age Sex Data Table",
+    title: "Cholera: Number of Deaths Per 10,000 People",
     font: {
       family: 'Arial',
       size: 12,
